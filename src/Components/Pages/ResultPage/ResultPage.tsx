@@ -1,5 +1,5 @@
 import React from 'react'
-import './StartPage.css'
+import './ResultPage.css'
 import Button from '../../Button'
 import { ReactComponent as ThumbsUpLogo } from '../../../Images/svg/thumbs-up.svg'
 import Media from 'react-media'
@@ -8,7 +8,7 @@ type Props = Partial<{
   onButtonClick: (e: React.MouseEvent<HTMLButtonElement | HTMLElement>) => void
 }>
 
-const StartPage: React.FC<Props> = ({ onButtonClick }) => {
+const ResultPage: React.FC<Props> = ({ onButtonClick }) => {
   return (
     <main>
       <section className="main">
@@ -17,17 +17,20 @@ const StartPage: React.FC<Props> = ({ onButtonClick }) => {
             <ThumbsUpLogo />
           </div>
           <div className="main__text">
-            <h1 className="main__title">
-          Who wants to be a millionaire?
-            </h1>
+            <h2 className="main__title-total">
+              Total score:
+            </h2>
+            <h3 className="main__title">
+              $8,000 earned
+            </h3>
             <Media queries={{
               small: '(max-width: 600px)',
               large: '(min-width: 601px)'
             }}>
               { matches => (
                 <>
-                  { matches.small && <Button onClick={ onButtonClick } size='s' fullWidth>Start</Button> }
-                  { matches.large && <Button onClick={ onButtonClick }>Start</Button> }
+                  { matches.small && <Button onClick={ onButtonClick } size='s' fullWidth>Try again</Button> }
+                  { matches.large && <Button onClick={ onButtonClick }>Try again</Button> }
                 </>
               ) }
             </Media>
@@ -38,4 +41,4 @@ const StartPage: React.FC<Props> = ({ onButtonClick }) => {
   )
 }
 
-export default StartPage
+export default ResultPage

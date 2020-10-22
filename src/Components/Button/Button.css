@@ -2,7 +2,7 @@
 @import '../../Styles/sizes.css';
 
 .btn {
-  font-weight: bold;
+  font-weight: 600;
   background-color: var(--orange-100);
   border-radius: var(--border-radius);
   color: var(--white);
