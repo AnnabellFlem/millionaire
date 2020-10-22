@@ -1,0 +1,25 @@
+@import '../../Styles/colors.css';
+@import '../../Styles/sizes.css';
+
+.money-cell {
+  font-weight: normal;
+  background-color: var(--white);
+  color: var(--black-100);
+  width: 240px;
+  border: none;
+  padding: 8px 24px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url();
+}
+
+.money-cell--s {
+  font-size: var(--font-xs);
+  line-height: var(--lh-s);
+}
+
+.money-cell--m {
+  font-size: var(--font-s);
+  line-height: var(--lh-m);
+}
