@@ -1,6 +1,6 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import MainLayout from './MainLayoutView'
+import MainLayout from './StartPage'
 import { MOCK_LIST } from '../../../../__mocks__/mockJokeLIst'
 
 const MOCK_HANDLE_FUNC = jest.fn()

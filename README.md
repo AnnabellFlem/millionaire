@@ -1,11 +1,11 @@
 # About project
-This project was created for educational purposes and for [MacPaw](https://macpaw.com/) internship selection. 
+This project was created for educational purposes and for [MacPaw](https://macpaw.com/) internship selection.
 
 Written using **React** and **TypeScript**.
 
-To get jokes in JSON format was used [Chuck Norris API](https://api.chucknorris.io/) 
+To get jokes in JSON format was used [Chuck Norris API](https://api.chucknorris.io/)
 
-Application has the following features: 
+Application has the following features:
 - Ability to get a random joke.
 - Ability to get a random joke from categories (Use API to get all available categories).
 - Ability to get jokes by free text search.
@@ -20,7 +20,7 @@ Application has the following features:
 * Add clearer typing and handling of server errors
 * Improve accessibility with more WAI-ARIA
 
-This project was bootstrapped with [Create React AppView](https://github.com/facebook/create-react-app).
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ### Prerequisites
 
@@ -58,15 +58,15 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm eject` 
+### `npm eject`
 
 If you aren’t satisfied with the build tool and configuration choices, you can eject at any time. This command will remove the single build dependency from your project.
 
-### `npm deploy` 
+### `npm deploy`
 
 The `predeploy` script will run automatically before `deploy` is run.
 This command allows you to deploy the project via **GitHub Pages** from the url with key `"homepage"` in `package.json`.
 
 ## Learn More
 
-You can learn more in the [Create React AppView documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
