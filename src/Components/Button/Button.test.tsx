@@ -18,7 +18,7 @@ describe('MoneyCell test', function () {
     expect(wrapper.find('button')).toHaveLength(1)
   })
 
-  it('Should have an icon', () => {
+  it('Should have an m size by default', () => {
     expect(wrapper.find('.btn--m')).toHaveLength(1)
   })
 

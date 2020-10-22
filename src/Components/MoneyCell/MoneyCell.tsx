@@ -1,6 +1,7 @@
 import React from 'react'
 import classNames from 'classnames'
 import './MoneyCell.css'
+import MoneyCellIcon from '../../assets/MoneyCellIcon'
 
 type Props = React.HtmlHTMLAttributes<HTMLDivElement> & Partial<{
   size: 's' | 'm'
@@ -8,7 +9,7 @@ type Props = React.HtmlHTMLAttributes<HTMLDivElement> & Partial<{
   disabled: boolean
 }>
 
-const MoneyCell: React.FC<Props> = ({ size, active, disabled, children, ...rest }) => {
+const MoneyCell: React.FC<Props> = ({ size='m', active, disabled, children, ...rest }) => {
   const defaultCellClassName = 'money-cell'
   const cellTextClassName = `${defaultCellClassName}__text`
 
@@ -20,6 +21,8 @@ const MoneyCell: React.FC<Props> = ({ size, active, disabled, children, ...rest 
 
   return (
     <div className={ buttonClassNames } { ...rest }>
+      <hr className={`${defaultCellClassName}__line`}/>
+      <MoneyCellIcon className={`${defaultCellClassName}__icon`} iconSize={size} />
       <span className={ cellTextClassName }>{ children }</span>
     </div>
   )

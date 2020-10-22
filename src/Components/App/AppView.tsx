@@ -7,7 +7,7 @@ const AppView: React.FC = () => {
   return (
     <div className="App">
       { /* <MainPage /> */ }
-      <MoneyCell>MoneyCell</MoneyCell>
+      <MoneyCell disabled size='s' >$1,000,000</MoneyCell>
     </div>
   )
 }
