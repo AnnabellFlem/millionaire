@@ -1,18 +1,24 @@
-export const MOCK_LIST = [{
-  id: 'string',
-  url: 'string',
-  text: 'fav',
-  categories: 'string',
-  updatedAt: 'string',
-  isFavourite: true,
-  isDataFromServer: true
-},
-{
-  id: 'string1',
-  url: 'string',
-  text: 'notfav',
-  categories: 'string',
-  updatedAt: 'string',
-  isFavourite: false,
-  isDataFromServer: false
+export const MOCK__QUESTIONS = [{
+  id: 1,
+  question: 'a',
+  answers: 'aa'
+},{
+  id: 2,
+  question: 'a',
+  answers: 'aa'
+},{
+  id: 3,
+  question: 'a',
+  answers: [{
+    id: 1,
+    answer: 'aaa',
+    right: true
+  },
+    {
+      id: 2,
+      answer: 'bb',
+      right: false
+    }]
 }]
+
+export const MOCK__Money = ['1', '20', '100000']
