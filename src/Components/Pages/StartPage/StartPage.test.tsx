@@ -1,5 +1,5 @@
 import React from 'react'
-import { mount, shallow } from 'enzyme'
+import { shallow } from 'enzyme'
 import StartPage from './index'
 
 describe('StartPage test', function () {
@@ -16,10 +16,5 @@ describe('StartPage test', function () {
   it('Should render component', () => {
     expect(wrapper.find('main')).toBeDefined()
     expect(wrapper.find('main')).toHaveLength(1)
-  })
-
-  it('Should have an svg', () => {
-    wrapper = mount(<StartPage />)
-    expect(wrapper.find('svg')).toHaveLength(1)
   })
 })

@@ -1,13 +1,15 @@
 # About project
-This project was created for educational purposes and for [MacPaw](https://macpaw.com/) internship selection.
+This project was created for educational purposes.
 
 Written using **React** and **TypeScript**.
 
-To get jokes in JSON format was used [Chuck Norris API](https://api.chucknorris.io/)
 
-Application has the following features:
-- Ability to get a random joke.
-- Ability to get a random joke from categories (Use API to get all available categories).
+This project is a game that is an adaptation of the popular show **'Who wants to be a millionaire'**
+
+Application has the following rules:
+- The player takes turns answering one of 12 questions.
+-
+Each question has 4 possible answers (there is a possibility of more). One or more correct answers are possible. This is specified in the question.
 - Ability to get jokes by free text search.
 - Any joke can be marked/unmarked as favourite.
 - Jokes marked as favourite appear in the right section Favourite.

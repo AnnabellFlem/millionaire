@@ -12,7 +12,6 @@ describe('<Header /> test', () => {
   })
 
   it('Component should render header', () => {
-    console.log(wrapper.debug())
     expect(wrapper.find('header')).toHaveLength(1)
   })
 })
