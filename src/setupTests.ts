@@ -9,9 +9,9 @@ import Adapter from 'enzyme-adapter-react-16'
 configure({ adapter: new Adapter() })
 window.matchMedia =
   window.matchMedia ||
-  function() {
+  function(media) {
     return {
-      matches: false,
+      matches: media === '(min-width: 921px)',
       addListener: function() {},
       removeListener: function() {}
     }

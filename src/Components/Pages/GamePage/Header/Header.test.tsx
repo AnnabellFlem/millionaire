@@ -11,12 +11,8 @@ describe('<Header /> test', () => {
     expect(wrapper.exists()).toBeTruthy()
   })
 
-  it('Component should render <BurgerIcon /> on init', () => {
-    expect(wrapper.find('svg').text().match('burger')?.length).toEqual(1)
-  })
-
-  it('Component should render <CloseIcon /> after button click init', () => {
-    wrapper.find('button').simulate('click')
-    expect(wrapper.find('svg').text().match('close')?.length).toEqual(1)
+  it('Component should render header', () => {
+    console.log(wrapper.debug())
+    expect(wrapper.find('header')).toHaveLength(1)
   })
 })
