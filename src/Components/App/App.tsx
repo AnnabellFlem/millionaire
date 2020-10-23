@@ -1,5 +1,5 @@
 import React from 'react'
-import MainPage from '../Pages/MainPage'
+import MainPage from '../Pages/GamePage/MainPage'
 import './App.css'
 import StartPage from '../Pages/StartPage'
 import ResultPage from '../Pages/ResultPage'
@@ -12,7 +12,8 @@ const App: React.FC = () => {
       { /* <MainPage /> */ }
       { /* <MoneyCell disabled size='s' >$1,000,000</MoneyCell> */ }
       { /* <ResultPage /> */ }
-      <AnswerCell variant="A">10 years</AnswerCell>
+      { /* <AnswerCell id="a" variant="A" >10 years</AnswerCell> */ }
+      <MainPage />
     </div>
   )
 }

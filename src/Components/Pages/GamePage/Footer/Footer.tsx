@@ -1,7 +1,7 @@
 import React from 'react'
-import './FooterStyle.css'
+import './Footer.css'
 
-const FooterView: React.FC = () => {
+const Footer: React.FC = () => {
   return (
     <footer className="Footer">
       <p className="Footer__text">&copy; 2020 by Anna Tsukanova</p>
@@ -9,4 +9,4 @@ const FooterView: React.FC = () => {
   )
 }
 
-export default FooterView
+export default Footer

@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import MainLayout from '../GamePage/MainLayout'
-import Header from '../GamePage/Header'
-import Footer from '../GamePage/Footer'
-import FavouriteList from '../GamePage/FavouriteList/FavouriteListView'
-import { FavListType, JokesListType, JokeType, RadioMode, RadioTypes } from '../../../Types'
-import ChuckNorrisService from '../../../Services/chucknorris-service'
+import MainLayout from '../MainLayout'
+import Header from '../Header'
+import Footer from '../Footer'
+import ChuckNorrisService from '../../../../Services/chucknorris-service'
 
 const MainPageView: React.FC = () => {
   // const chuckNorrisService = new ChuckNorrisService()
@@ -29,9 +27,8 @@ const MainPageView: React.FC = () => {
 
   return (<>
     <Header handleBtnClick={ () => handleBtnClick() } />
-    { /* <MainLayout list={ jokeList } */ }
-    { /*  error={ error } isLoaded={ isLoaded } /> */ }
-    <FavouriteList openFavList={ openFavList } />
+    <MainLayout />
+
     <Footer />
   </>)
 }

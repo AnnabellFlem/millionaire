@@ -9,20 +9,20 @@ type Props = React.HtmlHTMLAttributes<HTMLDivElement> & Partial<{
   disabled: boolean
 }>
 
-const MoneyCell: React.FC<Props> = ({ size='m', active, disabled, children, ...rest }) => {
+const MoneyCell: React.FC<Props> = ({ size = 'm', active, disabled, children, ...rest }) => {
   const defaultCellClassName = 'money-cell'
   const cellTextClassName = `${defaultCellClassName}__text`
 
-  const buttonClassNames = classNames(defaultCellClassName, {
+  const cellClassNames = classNames(defaultCellClassName, {
     [`${defaultCellClassName}--${size}`]: size,
     [`${defaultCellClassName}--active`]: active,
     [`${defaultCellClassName}--disabled`]: disabled
   })
 
   return (
-    <div className={ buttonClassNames } { ...rest }>
-      <hr className={`${defaultCellClassName}__line`}/>
-      <MoneyCellIcon className={`${defaultCellClassName}__icon`} iconSize={size} />
+    <div className={ cellClassNames } { ...rest }>
+      <hr className={ `${defaultCellClassName}__line` } />
+      <MoneyCellIcon className={ `${defaultCellClassName}__icon` } iconSize={ size } />
       <span className={ cellTextClassName }>{ children }</span>
     </div>
   )
