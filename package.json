@@ -42,6 +42,8 @@
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-standard": "^4.0.1",
     "gh-pages": "^2.2.0",
+    "husky": "^4.3.0",
+    "lint-staged": "^10.4.2",
     "postcss-loader": "^4.0.4",
     "prettier": "^2.1.2",
     "prettier-eslint": "^11.0.0",
@@ -82,9 +84,8 @@
     }
   },
   "lint-staged": {
-    "*.{ts, tsx}": [
-      "node_modules/.bin/eslint --max-warnings=0",
-      "prettier --write",
+    "*.(ts|tsx)": [
+      "npm run linter$ git add .:write",
       "git add"
     ]
   }
