@@ -17,19 +17,25 @@ const StartPage: React.FC<Props> = ({ onButtonClick }) => {
             <ThumbsUpLogo />
           </div>
           <div className="main__text">
-            <h1 className="main__title">
-          Who wants to be a millionaire?
-            </h1>
-            <Media queries={{
-              small: '(max-width: 600px)',
-              large: '(min-width: 601px)'
-            }}>
-              { matches => (
+            <h1 className="main__title">Who wants to be a millionaire?</h1>
+            <Media
+              queries={{
+                small: '(max-width: 600px)',
+                large: '(min-width: 601px)',
+              }}
+            >
+              {matches => (
                 <>
-                  { matches.small && <Button onClick={ onButtonClick } size='s' fullWidth>Start</Button> }
-                  { matches.large && <Button onClick={ onButtonClick }>Start</Button> }
+                  {matches.small && (
+                    <Button onClick={onButtonClick} size="s" fullWidth>
+                      Start
+                    </Button>
+                  )}
+                  {matches.large && (
+                    <Button onClick={onButtonClick}>Start</Button>
+                  )}
                 </>
-              ) }
+              )}
             </Media>
           </div>
         </div>

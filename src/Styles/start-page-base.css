@@ -11,7 +11,7 @@
 .main__wrapper {
   display: flex;
   align-items: center;
-  padding-bottom: 10%;
+  padding-bottom: 3%;
 }
 
 .main__text {
@@ -36,7 +36,11 @@
 
 @media (max-width: 920px) {
   .main__wrapper {
-    flex-wrap: wrap;
+    flex-direction: column;
+  }
+
+  .main__image {
+    margin-top: 80px;
   }
 
   .main__wrapper {
@@ -51,6 +55,7 @@
     align-self: flex-start;
     width: 100%;
     align-items: center;
+    flex: 1;
   }
 
   .main__title {
@@ -61,5 +66,6 @@
 
   .main .btn {
     align-self: center;
+    margin-top: auto;
   }
 }
