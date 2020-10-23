@@ -8,34 +8,31 @@ This project is a game that is an adaptation of the popular show **'Who wants to
 
 Application has the following rules:
 - The player takes turns answering one of 12 questions.
--
-Each question has 4 possible answers (there is a possibility of more). One or more correct answers are possible. This is specified in the question.
-- Ability to get jokes by free text search.
-- Any joke can be marked/unmarked as favourite.
-- Jokes marked as favourite appear in the right section Favourite.
-- Favourite jokes is available after reloading the page and stored in the browser.
+- Each question has 4 possible answers (there is a possibility of more). One or more correct answers are possible. This is stated in the question.
+- If the answer is correct, the player gets to the next question.
+- If the answer is wrong, the player goes to the final screen.
+- The final screen shows the overall result of the game.
 
 #### Future Improvements
 
 * Add a state manager to the implementation(for better testing functions and isolating state control logic)
-* Improve the interaction process with manual joke search(Display message that no jokes were found)
-* Add clearer typing and handling of server errors
+* Add clearer typing and handling of errors
 * Improve accessibility with more WAI-ARIA
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ### Prerequisites
 
-First of all, you will need [Node.js](https://nodejs.org) of version `10.15.2` or compatible with it, [npm](https://www.npmjs.com/) version `6.14.4` or compatible, and [git](https://git-scm.com/downloads) `2.20.1` or compatible.
+First of all, you will need [Node.js](https://nodejs.org) of version `12.18.3` or compatible with it, [npm](https://www.npmjs.com/) version `6.14.6` or compatible, and [git](https://git-scm.com/downloads) `2.25.1` or compatible.
 
-Check if everything is OK by running `npm -v`, `node -v` and `git --version` in the CLI
+Check if everything is OK by running `node -v`, `npm -v` and `git --version` in the CLI
 
 ## Available Scripts
 
 In the project directory, you can run:
 
 ### `npm i`
-This command helps to install all the necessary dependencies from the `package.json` before another actions with the project
+This command helps to install all the necessary dependencies from the `package.json` before starting another actions with the project
 
 ### `npm start`
 
@@ -48,7 +45,7 @@ You will also see any lint errors in the console.
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+See the section about [jest](https://jestjs.io/docs/en/getting-started) for more information.
 
 ### `npm run build(predeploy)`
 
@@ -68,6 +65,16 @@ If you aren’t satisfied with the build tool and configuration choices, you can
 
 The `predeploy` script will run automatically before `deploy` is run.
 This command allows you to deploy the project via **GitHub Pages** from the url with key `"homepage"` in `package.json`.
+
+### `npm eslint`
+
+The `eslint` script will run [ESLint](https://eslint.org/docs/user-guide/getting-started) on `src/` directory.
+
+### Hooks
+
+The following pre-hooks are also configured on the project:
+* `pre-commit` - before the commit, the hook will check the project code for compliance with the lint rules.
+* `pre-push` - will run all tests before pushing.
 
 ## Learn More
 
