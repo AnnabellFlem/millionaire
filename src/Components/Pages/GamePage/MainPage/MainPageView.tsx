@@ -25,12 +25,14 @@ const MainPageView: React.FC = () => {
     setOpenFavList(!openFavList)
   }
 
-  return (<>
-    <Header handleBtnClick={ () => handleBtnClick() } />
-    <MainLayout />
+  return (
+    <>
+      <Header handleBtnClick={() => handleBtnClick()} />
+      <MainLayout />
 
-    <Footer />
-  </>)
+      <Footer />
+    </>
+  )
 }
 
 export default MainPageView

@@ -31,6 +31,10 @@
     height: 100vh;
   }
 
+  .Header--close + main {
+    overflow: hidden;
+  }
+
   .Header__menu {
     border: none;
     background: none;
@@ -39,6 +43,14 @@
     position: absolute;
     top: 16px;
     right: 16px;
-    z-index: 2;
+    z-index: 4;
+  }
+
+  .Header__nav {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    z-index: 3;
+    background-color: var(--black-5);
   }
 }

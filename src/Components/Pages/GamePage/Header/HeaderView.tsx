@@ -4,6 +4,7 @@ import { ReactComponent as CloseIcon } from '../../../../Images/svg/close.svg'
 import { ReactComponent as BurgerIcon } from '../../../../Images/svg/menu.svg'
 import MoneyCell from '../../../MoneyCell'
 import Media from 'react-media'
+import classNames from 'classnames'
 
 type Props = {
   handleBtnClick: () => void
@@ -19,18 +20,21 @@ const HeaderView: React.FC<Props> = ({ handleBtnClick }) => {
   }
 
   const defaultHeaderClassName = 'Header'
+  const headerClassNames = classNames(defaultHeaderClassName, {
+    [`${defaultHeaderClassName}--close`]: closeIcon,
+  })
 
   const DesktopMenu = () => {
     return (
-      <nav className={ `${defaultHeaderClassName}__nav` }>
-        <ul className={ `${defaultHeaderClassName}__list` }>
-          <li className={ `${defaultHeaderClassName}__item` }>
+      <nav className={`${defaultHeaderClassName}__nav`}>
+        <ul className={`${defaultHeaderClassName}__list`}>
+          <li className={`${defaultHeaderClassName}__item`}>
             <MoneyCell>1111</MoneyCell>
           </li>
-          <li className={ `${defaultHeaderClassName}__item` }>
+          <li className={`${defaultHeaderClassName}__item`}>
             <MoneyCell>22222</MoneyCell>
           </li>
-          <li className={ `${defaultHeaderClassName}__item` }>
+          <li className={`${defaultHeaderClassName}__item`}>
             <MoneyCell>3333</MoneyCell>
           </li>
         </ul>
@@ -41,39 +45,46 @@ const HeaderView: React.FC<Props> = ({ handleBtnClick }) => {
   const MobileMenu = () => {
     return (
       <>
-        <button className={ `${defaultHeaderClassName}__menu` } aria-label={ closeIcon ? closeText : openText }
-          onClick={ () => iconClick() } >
-          { closeIcon ? <CloseIcon tabIndex={ 0 } /> : <BurgerIcon tabIndex={ 0 } /> }
+        <button
+          className={`${defaultHeaderClassName}__menu`}
+          aria-label={closeIcon ? closeText : openText}
+          onClick={() => iconClick()}
+        >
+          {closeIcon ? <CloseIcon tabIndex={0} /> : <BurgerIcon tabIndex={0} />}
         </button>
-        { closeIcon && (<nav className={ `${defaultHeaderClassName}__nav` }>
-          <ul className={ `${defaultHeaderClassName}__list` }>
-            <li className={ `${defaultHeaderClassName}__item` }>
-              <MoneyCell size='s'>1111</MoneyCell>
-            </li>
-            <li className={ `${defaultHeaderClassName}__item` }>
-              <MoneyCell size='s'>22222</MoneyCell>
-            </li>
-            <li className={ `${defaultHeaderClassName}__item` }>
-              <MoneyCell size='s'>3333</MoneyCell>
-            </li>
-          </ul>
-        </nav>) }
+        {closeIcon && (
+          <nav className={`${defaultHeaderClassName}__nav`}>
+            <ul className={`${defaultHeaderClassName}__list`}>
+              <li className={`${defaultHeaderClassName}__item`}>
+                <MoneyCell size="s">1111</MoneyCell>
+              </li>
+              <li className={`${defaultHeaderClassName}__item`}>
+                <MoneyCell size="s">22222</MoneyCell>
+              </li>
+              <li className={`${defaultHeaderClassName}__item`}>
+                <MoneyCell size="s">3333</MoneyCell>
+              </li>
+            </ul>
+          </nav>
+        )}
       </>
     )
   }
 
   return (
-    <header className={ defaultHeaderClassName }>
-      <Media queries={{
-        small: '(max-width: 920px)',
-        large: '(min-width: 921px)'
-      }}>
-        { matches => (
+    <header className={`${headerClassNames}`}>
+      <Media
+        queries={{
+          small: '(max-width: 920px)',
+          large: '(min-width: 921px)',
+        }}
+      >
+        {matches => (
           <>
-            { matches.small && MobileMenu() }
-            { matches.large && DesktopMenu() }
+            {matches.small && MobileMenu()}
+            {matches.large && DesktopMenu()}
           </>
-        ) }
+        )}
       </Media>
     </header>
   )
