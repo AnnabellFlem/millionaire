@@ -29,7 +29,6 @@ const MainPage: React.FC = () => {
     <>
       <Header handleBtnClick={() => handleBtnClick()} />
       <MainLayout />
-
       <Footer />
     </>
   )

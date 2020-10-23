@@ -1,11 +1,23 @@
 import React from 'react'
-import { shallow } from 'enzyme'
+import { mount } from 'enzyme'
 import MainPage from './MainPage'
 
 describe('<MainPage /> test', () => {
-  const wrapper = shallow(<MainPage />)
+  const wrapper = mount(<MainPage />)
 
   it('Component should render without crashing', () => {
     expect(wrapper.exists()).toBeTruthy()
+  })
+
+  it('Should render header', () => {
+    expect(wrapper.find('header')).toHaveLength(1)
+  })
+
+  it('Should render main', () => {
+    expect(wrapper.find('main')).toHaveLength(1)
+  })
+
+  it('Should render footer', () => {
+    expect(wrapper.find('footer')).toHaveLength(1)
   })
 })

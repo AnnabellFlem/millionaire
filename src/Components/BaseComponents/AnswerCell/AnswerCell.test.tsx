@@ -1,12 +1,13 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import MoneyCell from './index'
+import AnswerCell from './index'
 
-describe('MoneyCell test', function () {
+describe('AnswerCell test', function () {
   let wrapper: any
+  const variant = 'A'
 
   beforeAll(() => {
-    wrapper = shallow(<MoneyCell />)
+    wrapper = shallow(<AnswerCell variant={variant} id="1" />)
   })
 
   it('should to match snapshot', () => {
@@ -15,15 +16,14 @@ describe('MoneyCell test', function () {
 
   it('Should render div', () => {
     expect(wrapper.find('div')).toBeDefined()
-    expect(wrapper.find('div')).toHaveLength(1)
+    expect(wrapper.find('div').length).toBeGreaterThan(1)
   })
 
   it('Should have an m size by default', () => {
-    expect(wrapper.find('.money-cell--m')).toHaveLength(1)
+    expect(wrapper.find('.answer-cell--m')).toHaveLength(1)
   })
 
-  it('Should have fullWidth prop', () => {
-    wrapper = shallow(<MoneyCell active />)
-    expect(wrapper.find('.money-cell--active')).toHaveLength(1)
+  it(`Should have an span with ${variant} text`, () => {
+    expect(wrapper.find('.answer-cell__variant').text()).toBe(variant)
   })
 })
