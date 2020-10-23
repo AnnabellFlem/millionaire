@@ -80,10 +80,10 @@
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
-      "pre-push": "npm run test"
+      "pre-push": "npm run test a"
     }
   },
   "lint-staged": {
-    "*.(ts|tsx)": ["npm run eslint", "git add"]
+    "*.(ts|tsx)": ["npm run eslint"]
   }
 }
