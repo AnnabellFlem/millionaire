@@ -1,6 +1,6 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import MainPage from './MainPageView'
+import MainPage from './MainPage'
 
 describe('<MainPage /> test', () => {
   const wrapper = shallow(<MainPage />)

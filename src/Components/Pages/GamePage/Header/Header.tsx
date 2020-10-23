@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import './HeaderStyle.css'
+import './Header.css'
 import { ReactComponent as CloseIcon } from '../../../../Images/svg/close.svg'
 import { ReactComponent as BurgerIcon } from '../../../../Images/svg/menu.svg'
-import MoneyCell from '../../../MoneyCell'
+import MoneyCell from '../../../BaseComponents/MoneyCell'
 import Media from 'react-media'
 import classNames from 'classnames'
 
@@ -10,7 +10,7 @@ type Props = {
   handleBtnClick: () => void
 }
 
-const HeaderView: React.FC<Props> = ({ handleBtnClick }) => {
+const Header: React.FC<Props> = ({ handleBtnClick }) => {
   const [closeIcon, setCloseIcon] = useState(false)
   const openText = 'Open list of money levels'
   const closeText = 'Close list of money levels'
@@ -90,4 +90,4 @@ const HeaderView: React.FC<Props> = ({ handleBtnClick }) => {
   )
 }
 
-export default HeaderView
+export default Header

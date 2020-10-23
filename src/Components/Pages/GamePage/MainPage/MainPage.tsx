@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import MainLayout from '../MainLayout'
 import Header from '../Header'
 import Footer from '../Footer'
 import ChuckNorrisService from '../../../../Services/chucknorris-service'
 
-const MainPageView: React.FC = () => {
+const MainPage: React.FC = () => {
   // const chuckNorrisService = new ChuckNorrisService()
   const [openFavList, setOpenFavList] = useState(false)
 
@@ -35,4 +35,4 @@ const MainPageView: React.FC = () => {
   )
 }
 
-export default MainPageView
+export default MainPage

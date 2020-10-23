@@ -1,7 +1,7 @@
 import React from 'react'
 import classNames from 'classnames'
 import './AnswerCell.css'
-import AnswerCellIcon from '../../assets/AnswerCellIcon'
+import AnswerCellIcon from '../../../assets/AnswerCellIcon'
 
 type Props = React.HTMLProps<HTMLInputElement> &
   Partial<{

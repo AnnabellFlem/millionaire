@@ -3,7 +3,7 @@ import MainPage from '../Pages/GamePage/MainPage'
 import './App.css'
 import StartPage from '../Pages/StartPage'
 import ResultPage from '../Pages/ResultPage'
-import AnswerCell from '../AnswerCell'
+import AnswerCell from '../BaseComponents/AnswerCell'
 import AnswerCellIcon from '../../assets/AnswerCellIcon'
 
 const App: React.FC = () => {

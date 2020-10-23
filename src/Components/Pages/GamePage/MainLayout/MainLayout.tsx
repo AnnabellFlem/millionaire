@@ -1,10 +1,10 @@
 import React from 'react'
-import './MainLayoutStyle.css'
+import './MainLayout.css'
 // import SearchPanel from '../SearchPanel'
 // import JokesList from '../JokesLIst'
 import { JokesListType, RadioMode } from '../../../../Types'
-import AnswerCell from '../../../AnswerCell'
-import Button from '../../../Button'
+import AnswerCell from '../../../BaseComponents/AnswerCell'
+import Button from '../../../BaseComponents/Button'
 import Media from 'react-media'
 // import Loader from '../Loader'
 
@@ -16,7 +16,7 @@ type Props = {
   // isLoaded: boolean
 }
 
-const MainLayoutView: React.FC = () => {
+const MainLayout: React.FC = () => {
   const defaultMainLayoutClassName = 'MainLayout'
   const maxQuery = '(max-width: 600px)'
   const minQuery = '(min-width: 601px)'
@@ -128,4 +128,4 @@ const MainLayoutView: React.FC = () => {
   )
 }
 
-export default MainLayoutView
+export default MainLayout

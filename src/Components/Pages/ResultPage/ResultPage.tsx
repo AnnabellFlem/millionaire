@@ -1,6 +1,6 @@
 import React from 'react'
 import './ResultPage.css'
-import Button from '../../Button'
+import Button from '../../BaseComponents/Button'
 import { ReactComponent as ThumbsUpLogo } from '../../../Images/svg/thumbs-up.svg'
 import Media from 'react-media'
 

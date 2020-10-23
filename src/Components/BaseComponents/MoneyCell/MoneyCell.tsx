@@ -1,7 +1,7 @@
 import React from 'react'
 import classNames from 'classnames'
 import './MoneyCell.css'
-import MoneyCellIcon from '../../assets/MoneyCellIcon'
+import MoneyCellIcon from '../../../assets/MoneyCellIcon'
 
 type Props = React.HtmlHTMLAttributes<HTMLDivElement> &
   Partial<{

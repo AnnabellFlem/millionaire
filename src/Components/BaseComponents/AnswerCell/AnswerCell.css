@@ -1,5 +1,5 @@
-@import '../../Styles/colors.css';
-@import '../../Styles/sizes.css';
+@import '../../../Styles/colors.css';
+@import '../../../Styles/sizes.css';
 
 .answer-cell {
   font-weight: normal;
