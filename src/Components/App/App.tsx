@@ -1,5 +1,5 @@
 import React from 'react'
-import MainPage from '../Pages/GamePage/MainPage'
+import MainPage from '../Pages/GamePage'
 import './App.css'
 import StartPage from '../Pages/StartPage'
 import ResultPage from '../Pages/ResultPage'

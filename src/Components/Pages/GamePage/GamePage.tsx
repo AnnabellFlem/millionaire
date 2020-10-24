@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import MainLayout from '../MainLayout'
-import Header from '../Header'
-import Footer from '../Footer'
-import ChuckNorrisService from '../../../../Services/chucknorris-service'
+import MainLayout from './MainLayout'
+import Header from './Header'
+import Footer from './Footer'
+import ChuckNorrisService from '../../../Services/chucknorris-service'
 
-const MainPage: React.FC = () => {
+const GamePage: React.FC = () => {
   // const chuckNorrisService = new ChuckNorrisService()
   const [openFavList, setOpenFavList] = useState(false)
 
@@ -15,7 +15,8 @@ const MainPage: React.FC = () => {
   //   }
   //   return []
   // }
-  // const [favList, setFavList] = useState(getStorageList('favList') as FavListType)
+  // const [favList, setFavList] =
+  // useState(getStorageList('favList') as FavListType)
   // const [list, setList] = useState([] as JokesListType)
   // const [jokeList, setJokeList] = useState([] as JokesListType)
   // const [error, setError] = useState(null)
@@ -34,4 +35,4 @@ const MainPage: React.FC = () => {
   )
 }
 
-export default MainPage
+export default GamePage

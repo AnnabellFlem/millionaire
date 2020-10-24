@@ -1,9 +1,9 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import MainPage from './MainPage'
+import GamePage from './GamePage'
 
-describe('<MainPage /> test', () => {
-  const wrapper = mount(<MainPage />)
+describe('<GamePage /> test', () => {
+  const wrapper = mount(<GamePage />)
 
   it('Component should render without crashing', () => {
     expect(wrapper.exists()).toBeTruthy()

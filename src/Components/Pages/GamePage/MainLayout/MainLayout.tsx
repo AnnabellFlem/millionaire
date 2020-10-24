@@ -120,9 +120,6 @@ const MainLayout: React.FC = () => {
             )}
           </Media>
         </form>
-
-        {/* <SearchPanel handleCategories = { handleCategories } /> */}
-        {/* { renderJokeList() } */}
       </section>
     </main>
   )
