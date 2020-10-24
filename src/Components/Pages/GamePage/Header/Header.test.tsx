@@ -5,7 +5,15 @@ import Header from './Header'
 const MOCK_HANDLE_FUNC = jest.fn()
 
 describe('<Header /> test', () => {
-  const wrapper = mount(<Header handleBtnClick={MOCK_HANDLE_FUNC} />)
+  let wrapper: any
+
+  beforeAll(() => {
+    wrapper = mount(<Header handleBtnClick={MOCK_HANDLE_FUNC} />)
+  })
+
+  it('should to match snapshot', () => {
+    expect(wrapper).toMatchSnapshot()
+  })
 
   it('Component should render without crashing', () => {
     expect(wrapper.exists()).toBeTruthy()

@@ -3,7 +3,15 @@ import { mount } from 'enzyme'
 import GamePage from './GamePage'
 
 describe('<GamePage /> test', () => {
-  const wrapper = mount(<GamePage />)
+  let wrapper: any
+
+  beforeAll(() => {
+    wrapper = mount(<GamePage />)
+  })
+
+  it('should to match snapshot', () => {
+    expect(wrapper).toMatchSnapshot()
+  })
 
   it('Component should render without crashing', () => {
     expect(wrapper.exists()).toBeTruthy()

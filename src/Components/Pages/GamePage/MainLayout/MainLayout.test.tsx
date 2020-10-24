@@ -3,7 +3,15 @@ import { mount } from 'enzyme'
 import MainLayout from './MainLayout'
 
 describe('<MainLayout /> test', () => {
-  const wrapper = mount(<MainLayout />)
+  let wrapper: any
+
+  beforeAll(() => {
+    wrapper = mount(<MainLayout />)
+  })
+
+  it('should to match snapshot', () => {
+    expect(wrapper).toMatchSnapshot()
+  })
 
   it('Component should render without crashing', () => {
     expect(wrapper.exists()).toBeTruthy()
