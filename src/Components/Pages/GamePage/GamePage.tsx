@@ -3,7 +3,7 @@ import MainLayout from './MainLayout'
 import Header from './Header'
 import Footer from './Footer'
 
-const GamePage: React.FC = () => {
+const GamePage: React.FC<any> = ({ handleEndGame }) => {
   const [openFavList, setOpenFavList] = useState(false)
 
   const handleBtnClick = () => {
@@ -13,7 +13,7 @@ const GamePage: React.FC = () => {
   return (
     <>
       <Header handleBtnClick={() => handleBtnClick()} />
-      <MainLayout />
+      <MainLayout handleEndGame={handleEndGame} />
       <Footer />
     </>
   )

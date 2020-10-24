@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import './MainLayout.css'
 import AnswerCell from '../../../BaseComponents/AnswerCell'
 import Button from '../../../BaseComponents/Button'
@@ -11,10 +11,9 @@ import { MEDIA_QUERY_MOBILE } from '../../../../Constants/MediaQueries'
 
 type Type = undefined | boolean
 
-const MainLayout: React.FC = () => {
+const MainLayout: React.FC<any> = ({ handleEndGame }) => {
   const isWide = useMedia(MEDIA_QUERY_MOBILE)
   const lastRound = money.length
-  const [endGame, setEndGame] = useState(false)
   const [currentNumberQuestion, setCurrentNumberQuestion] = useState(0)
   const [answersArray, setAnswersArray] = useState<Array<any>>([])
   const [resultArray, setResultArray] = useState<Array<any>>([])
@@ -40,6 +39,7 @@ const MainLayout: React.FC = () => {
       if (answersArray.includes(item.id)) {
         return item
       }
+      return null
     })
 
     setResultArray([...rightAns, ...userAns.filter(item => !item.right)])
@@ -48,26 +48,12 @@ const MainLayout: React.FC = () => {
       if (rightAns.length === userAns.filter(item => item.right).length) {
         setAnswersArray([])
         setResultArray([])
-        setCurrentNumberQuestion(currentNumberQuestion + 1)
-        // currentNumberQuestion === lastRound
-        //   ? console.log('last')
-        //   : setCurrentNumberQuestion(currentNumberQuestion + 1)
-      } else return console.log('not equal')
+        currentNumberQuestion === lastRound - 1
+          ? handleEndGame()
+          : setCurrentNumberQuestion(currentNumberQuestion + 1)
+      } else return handleEndGame()
     }, 2000)
   }
-
-  // useEffect(() => {
-  //   if (endGame) {
-  //     const timeout = setTimeout(() => {
-  //       setAnswersArray([])
-  //       setResultArray([])
-  //       setCurrentNumberQuestion(currentNumberQuestion + 1)
-  //       setEndGame(false)
-  //     }, 2000)
-  //
-  //     return () => clearTimeout(timeout)
-  //   }
-  // }, [endGame])
 
   const RenderList = (array: Array<any>, resArr: Array<any>) => {
     console.log(answersArray)

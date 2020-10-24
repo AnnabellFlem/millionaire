@@ -10,17 +10,21 @@ const MainPage: React.FC = () => {
   const handleClick = (e: any) => {
     if (e.currentTarget.value === 'start') {
       setStartGame(false)
-    }
-    if (e.currentTarget.value === 'retry') {
+    } else if (e.currentTarget.value === 'retry') {
       setStartGame(true)
       setEndGame(false)
     } else return null
   }
 
+  const handleEndGame = () => {
+    console.log('alive')
+    setEndGame(true)
+  }
+
   return (
     <>
       {startGame && !endGame && <StartPage onButtonClick={handleClick} />}
-      {!startGame && !endGame && <GamePage />}
+      {!startGame && !endGame && <GamePage handleEndGame={handleEndGame} />}
       {!startGame && endGame && <ResultPage onButtonClick={handleClick} />}
     </>
   )
