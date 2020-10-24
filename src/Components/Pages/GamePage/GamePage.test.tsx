@@ -2,7 +2,7 @@ import React from 'react'
 import { mount } from 'enzyme'
 import GamePage from './GamePage'
 
-describe('<GamePage /> test', () => {
+describe('<MainPage /> test', () => {
   let wrapper: any
 
   beforeAll(() => {

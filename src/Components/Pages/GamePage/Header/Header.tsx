@@ -3,14 +3,16 @@ import './Header.css'
 import { ReactComponent as CloseIcon } from '../../../../Images/svg/close.svg'
 import { ReactComponent as BurgerIcon } from '../../../../Images/svg/menu.svg'
 import MoneyCell from '../../../BaseComponents/MoneyCell'
-import Media from 'react-media'
 import classNames from 'classnames'
+import useMedia from 'use-media'
+import { MEDIA_QUERY_TABLET } from '../../../../Constants/MediaQueries'
 
 type Props = {
   handleBtnClick: () => void
 }
 
 const Header: React.FC<Props> = ({ handleBtnClick }) => {
+  const isWide = useMedia(MEDIA_QUERY_TABLET)
   const [closeIcon, setCloseIcon] = useState(false)
   const openText = 'Open list of money levels'
   const closeText = 'Close list of money levels'
@@ -73,19 +75,7 @@ const Header: React.FC<Props> = ({ handleBtnClick }) => {
 
   return (
     <header className={`${headerClassNames}`}>
-      <Media
-        queries={{
-          small: '(max-width: 920px)',
-          large: '(min-width: 921px)',
-        }}
-      >
-        {matches => (
-          <>
-            {matches.small && MobileMenu()}
-            {matches.large && DesktopMenu()}
-          </>
-        )}
-      </Media>
+      {isWide ? DesktopMenu() : MobileMenu()}
     </header>
   )
 }

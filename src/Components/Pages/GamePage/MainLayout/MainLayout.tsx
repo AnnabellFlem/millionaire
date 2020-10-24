@@ -1,76 +1,98 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './MainLayout.css'
-// import SearchPanel from '../SearchPanel'
-// import JokesList from '../JokesLIst'
-import { JokesListType, RadioMode } from '../../../../Types'
 import AnswerCell from '../../../BaseComponents/AnswerCell'
 import Button from '../../../BaseComponents/Button'
-import Media from 'react-media'
-// import Loader from '../Loader'
-
-type Props = {
-  // list: JokesListType
-  // handleJokesList: (id: string) => void
-  // handleCategories: (obj: RadioMode) => void
-  // error: any
-  // isLoaded: boolean
-}
+import {
+  MOCK__QUESTIONS as questions,
+  MOCK__MONEY as money,
+} from '../../../../Services/mockQuestions'
+import useMedia from 'use-media'
+import { MEDIA_QUERY_MOBILE } from '../../../../Constants/MediaQueries'
 
 const MainLayout: React.FC = () => {
-  const defaultMainLayoutClassName = 'MainLayout'
-  const maxQuery = '(max-width: 600px)'
-  const minQuery = '(min-width: 601px)'
+  const isWide = useMedia(MEDIA_QUERY_MOBILE)
+  const [currentQuestionNumber, setCurrentQuestionNumber] = useState(0)
+  const [selectedAnswersArray, setSelectedAnswersArray] = useState<Array<any>>(
+    [],
+  )
+  const [answersArray, setAnswersArrayArray] = useState<Array<any>>([])
 
-  const DesktopList = () => {
+  const currentQuestion = questions[currentQuestionNumber]
+
+  useEffect(() => {
+    setAnswersArrayArray(currentQuestion.answers)
+  })
+
+  const defaultMainLayoutClassName = 'MainLayout'
+
+  const handleChange = (e: any) => {
+    const currID = e.currentTarget.id
+    const index = selectedAnswersArray.indexOf(currID)
+    if (index > -1) {
+      selectedAnswersArray.splice(index, 1)
+      return setSelectedAnswersArray(selectedAnswersArray)
+    }
+    return setSelectedAnswersArray([...selectedAnswersArray, currID])
+  }
+
+  const handleCheck = () => {
+    // setResultArray(currentQuestion.answers.filter(item => item.right))
+    // const userAnswers = currentQuestion.answers.filter((item, index) => {
+    //   console.log(item, selectedAnswersArray)
+    //   if (!item.right && selectedAnswersArray.includes(item.id)) {
+    //     return item
+    //   }
+    // })
+    //
+    // setResultArray([...resultArray, ...userAnswers])
+  }
+
+  const DesktopList = (array: Array<any>, result = undefined) => {
     return (
       <>
-        <li className={`${defaultMainLayoutClassName}__answers-item`}>
-          <AnswerCell variant="A" id="1" name="answ">
-            aaa
-          </AnswerCell>
-        </li>
-        <li className={`${defaultMainLayoutClassName}__answers-item`}>
-          <AnswerCell variant="B" id="2" name="answ">
-            ddd
-          </AnswerCell>
-        </li>
-        <li className={`${defaultMainLayoutClassName}__answers-item`}>
-          <AnswerCell variant="C" id="3" name="answ">
-            fff
-          </AnswerCell>
-        </li>
-        <li className={`${defaultMainLayoutClassName}__answers-item`}>
-          <AnswerCell variant="D" id="4" name="answ">
-            ggg
-          </AnswerCell>
-        </li>
+        {array.map(item => {
+          return (
+            <li
+              key={item.id}
+              className={`${defaultMainLayoutClassName}__answers-item`}
+            >
+              <AnswerCell
+                variant={item.variant}
+                id={item.id}
+                name="answer"
+                correct={result}
+                wrong={result}
+                onChange={handleChange}
+              >
+                {item.answer}
+              </AnswerCell>
+            </li>
+          )
+        })}
       </>
     )
   }
 
-  const MobileList = () => {
+  const MobileList = (array: Array<any>) => {
     return (
       <>
-        <li className={`${defaultMainLayoutClassName}__answers-item`}>
-          <AnswerCell sizeCell="s" variant="A" id="1" name="answ">
-            aaa
-          </AnswerCell>
-        </li>
-        <li className={`${defaultMainLayoutClassName}__answers-item`}>
-          <AnswerCell sizeCell="s" variant="B" id="2" name="answ">
-            ddd
-          </AnswerCell>
-        </li>
-        <li className={`${defaultMainLayoutClassName}__answers-item`}>
-          <AnswerCell sizeCell="s" variant="C" id="3" name="answ">
-            fff
-          </AnswerCell>
-        </li>
-        <li className={`${defaultMainLayoutClassName}__answers-item`}>
-          <AnswerCell sizeCell="s" variant="D" id="4" name="answ">
-            ggg
-          </AnswerCell>
-        </li>
+        {array.map(item => {
+          return (
+            <li
+              key={item.id}
+              className={`${defaultMainLayoutClassName}__answers-item`}
+            >
+              <AnswerCell
+                variant={item.variant}
+                sizeCell="s"
+                id={item.id}
+                name="answer"
+              >
+                {item.answer}
+              </AnswerCell>
+            </li>
+          )
+        })}
       </>
     )
   }
@@ -84,41 +106,21 @@ const MainLayout: React.FC = () => {
             className={`${defaultMainLayoutClassName}__answers-fieldset`}
           >
             <legend className={`${defaultMainLayoutClassName}__answers-text`}>
-              How old your elder brother was 10 years before you was born, mate?
+              {currentQuestion.question}
             </legend>
             <ul className={`${defaultMainLayoutClassName}__answers-list`}>
-              <Media
-                queries={{
-                  small: maxQuery,
-                  large: minQuery,
-                }}
-              >
-                {matches => (
-                  <>
-                    {matches.small && MobileList()}
-                    {matches.large && DesktopList()}
-                  </>
-                )}
-              </Media>
+              {isWide ? DesktopList(answersArray) : MobileList(answersArray)}
             </ul>
           </div>
-          <Media
-            queries={{
-              small: maxQuery,
-              large: minQuery,
-            }}
-          >
-            {matches => (
-              <>
-                {matches.small && (
-                  <Button type="button" size="s">
-                    Check
-                  </Button>
-                )}
-                {matches.large && <Button type="button">Check</Button>}
-              </>
-            )}
-          </Media>
+          {isWide ? (
+            <Button type="button" onClick={handleCheck}>
+              Check
+            </Button>
+          ) : (
+            <Button type="button" size="s" onClick={handleCheck}>
+              Check
+            </Button>
+          )}
         </form>
       </section>
     </main>
