@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import './MainLayout.css'
 import AnswerCell from '../../../BaseComponents/AnswerCell'
 import Button from '../../../BaseComponents/Button'
@@ -9,87 +9,103 @@ import {
 import useMedia from 'use-media'
 import { MEDIA_QUERY_MOBILE } from '../../../../Constants/MediaQueries'
 
+type Type = undefined | boolean
+
 const MainLayout: React.FC = () => {
   const isWide = useMedia(MEDIA_QUERY_MOBILE)
-  const [currentQuestionNumber, setCurrentQuestionNumber] = useState(0)
-  const [selectedAnswersArray, setSelectedAnswersArray] = useState<Array<any>>(
-    [],
-  )
-  const [answersArray, setAnswersArrayArray] = useState<Array<any>>([])
+  const lastRound = money.length
+  const [endGame, setEndGame] = useState(false)
+  const [currentNumberQuestion, setCurrentNumberQuestion] = useState(0)
+  const [answersArray, setAnswersArray] = useState<Array<any>>([])
+  const [resultArray, setResultArray] = useState<Array<any>>([])
 
-  const currentQuestion = questions[currentQuestionNumber]
-
-  useEffect(() => {
-    setAnswersArrayArray(currentQuestion.answers)
-  })
+  const currentQuestion = questions[currentNumberQuestion]
 
   const defaultMainLayoutClassName = 'MainLayout'
 
   const handleChange = (e: any) => {
     const currID = e.currentTarget.id
-    const index = selectedAnswersArray.indexOf(currID)
+    const index = answersArray.indexOf(currID)
     if (index > -1) {
-      selectedAnswersArray.splice(index, 1)
-      return setSelectedAnswersArray(selectedAnswersArray)
+      answersArray.splice(index, 1)
+      return setAnswersArray(answersArray)
     }
-    return setSelectedAnswersArray([...selectedAnswersArray, currID])
+    return setAnswersArray([...answersArray, ...currID])
   }
 
   const handleCheck = () => {
-    // setResultArray(currentQuestion.answers.filter(item => item.right))
-    // const userAnswers = currentQuestion.answers.filter((item, index) => {
-    //   console.log(item, selectedAnswersArray)
-    //   if (!item.right && selectedAnswersArray.includes(item.id)) {
-    //     return item
-    //   }
-    // })
-    //
-    // setResultArray([...resultArray, ...userAnswers])
+    const rightAns = currentQuestion.answers.filter(item => item.right)
+
+    const userAns = currentQuestion.answers.filter(item => {
+      if (answersArray.includes(item.id)) {
+        return item
+      }
+    })
+
+    setResultArray([...rightAns, ...userAns.filter(item => !item.right)])
+
+    setTimeout(() => {
+      if (rightAns.length === userAns.filter(item => item.right).length) {
+        setAnswersArray([])
+        setResultArray([])
+        setCurrentNumberQuestion(currentNumberQuestion + 1)
+        // currentNumberQuestion === lastRound
+        //   ? console.log('last')
+        //   : setCurrentNumberQuestion(currentNumberQuestion + 1)
+      } else return console.log('not equal')
+    }, 2000)
   }
 
-  const DesktopList = (array: Array<any>, result = undefined) => {
+  // useEffect(() => {
+  //   if (endGame) {
+  //     const timeout = setTimeout(() => {
+  //       setAnswersArray([])
+  //       setResultArray([])
+  //       setCurrentNumberQuestion(currentNumberQuestion + 1)
+  //       setEndGame(false)
+  //     }, 2000)
+  //
+  //     return () => clearTimeout(timeout)
+  //   }
+  // }, [endGame])
+
+  const RenderList = (array: Array<any>, resArr: Array<any>) => {
+    console.log(answersArray)
     return (
       <>
         {array.map(item => {
+          const currItem = resArr.includes(item)
           return (
             <li
               key={item.id}
               className={`${defaultMainLayoutClassName}__answers-item`}
             >
-              <AnswerCell
-                variant={item.variant}
-                id={item.id}
-                name="answer"
-                correct={result}
-                wrong={result}
-                onChange={handleChange}
-              >
-                {item.answer}
-              </AnswerCell>
-            </li>
-          )
-        })}
-      </>
-    )
-  }
-
-  const MobileList = (array: Array<any>) => {
-    return (
-      <>
-        {array.map(item => {
-          return (
-            <li
-              key={item.id}
-              className={`${defaultMainLayoutClassName}__answers-item`}
-            >
-              <AnswerCell
-                variant={item.variant}
-                sizeCell="s"
-                id={item.id}
-                name="answer"
-              >
-                {item.answer}
-              </AnswerCell>
+              {isWide ? (
+                <AnswerCell
+                  variant={item.variant}
+                  id={item.id}
+                  name="answer"
+                  correct={currItem ? item.right : undefined}
+                  wrong={currItem ? !item.right : undefined}
+                  onChange={handleChange}
+                  checked={answersArray.includes(item.id)}
+                >
+                  {item.answer}
+                </AnswerCell>
+              ) : (
+                <AnswerCell
+                  variant={item.variant}
+                  sizeCell="s"
+                  id={item.id}
+                  correct={currItem ? item.right : undefined}
+                  wrong={currItem ? !item.right : undefined}
+                  name="answer"
+                  onChange={handleChange}
+                  checked={answersArray.includes(item.id)}
+                >
+                  {item.answer}
+                </AnswerCell>
+              )}
             </li>
           )
         })}
@@ -109,7 +125,7 @@ const MainLayout: React.FC = () => {
               {currentQuestion.question}
             </legend>
             <ul className={`${defaultMainLayoutClassName}__answers-list`}>
-              {isWide ? DesktopList(answersArray) : MobileList(answersArray)}
+              {RenderList(currentQuestion.answers, resultArray)}
             </ul>
           </div>
           {isWide ? (

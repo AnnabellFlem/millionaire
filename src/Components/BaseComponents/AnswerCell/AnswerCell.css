@@ -66,21 +66,21 @@
 }
 
 .answer-cell--wrong .answer-cell__line {
-  background-color: var(--red-100);
+  background-color: var(--red-100) !important;
 }
 
 .answer-cell--wrong .answer-cell__icon {
-  stroke: var(--red-100);
-  fill: var(--red-5);
+  stroke: var(--red-100) !important;
+  fill: var(--red-5) !important;
 }
 
 .answer-cell--correct .answer-cell__line {
-  background-color: var(--green-100);
+  background-color: var(--green-100) !important;
 }
 
 .answer-cell--correct .answer-cell__icon {
-  stroke: var(--green-100);
-  fill: var(--green-5);
+  stroke: var(--green-100) !important;
+  fill: var(--green-5) !important;
 }
 
 .answer-cell__variant {

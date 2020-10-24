@@ -91,4 +91,4 @@ export const MOCK__QUESTIONS = [
   },
 ]
 
-export const MOCK__MONEY = ['1', '20', '100000']
+export const MOCK__MONEY = ['1', '20']

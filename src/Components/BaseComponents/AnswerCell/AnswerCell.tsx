@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import classNames from 'classnames'
 import './AnswerCell.css'
 import AnswerCellIcon from '../../../assets/AnswerCellIcon'
@@ -20,9 +20,16 @@ const AnswerCell: React.FC<Props> = ({
   active,
   correct,
   wrong,
+  checked,
   children,
   ...rest
 }) => {
+  const [checkedItem, setCheckedItem] = useState(checked)
+
+  useEffect(() => {
+    setCheckedItem(checked)
+  }, [checked])
+
   const defaultCellClassName = 'answer-cell'
   const cellTextClassName = `${defaultCellClassName}__text`
   const cellVariantClassName = `${defaultCellClassName}__variant`
@@ -34,14 +41,20 @@ const AnswerCell: React.FC<Props> = ({
     [`${defaultCellClassName}--wrong`]: wrong,
   })
 
+  const handleChange = (e: any) => {
+    onChange && onChange(e)
+    setCheckedItem(!checkedItem)
+  }
+
   return (
     <div className={cellClassNames}>
       <div className={`${defaultCellClassName}__wrapper`}>
         <input
           type="checkbox"
-          onChange={onChange}
+          onChange={handleChange}
           className={`${defaultCellClassName}__input`}
           id={id}
+          checked={checkedItem}
           {...rest}
         />
         <label htmlFor={id} className={`${defaultCellClassName}__label`}>
