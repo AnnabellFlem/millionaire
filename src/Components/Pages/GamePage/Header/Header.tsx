@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Header.css'
 import { ReactComponent as CloseIcon } from '../../../../Images/svg/close.svg'
 import { ReactComponent as BurgerIcon } from '../../../../Images/svg/menu.svg'
@@ -6,16 +6,21 @@ import MoneyCell from '../../../BaseComponents/MoneyCell'
 import classNames from 'classnames'
 import useMedia from 'use-media'
 import { MEDIA_QUERY_TABLET } from '../../../../Constants/MediaQueries'
+import { moneyArray } from '../../../../Services/mockData'
 
 type Props = {
   handleBtnClick: () => void
+  currentNumberQuestion: number
 }
 
-const Header: React.FC<Props> = ({ handleBtnClick }) => {
+const Header: React.FC<Props> = ({ handleBtnClick, currentNumberQuestion }) => {
   const isWide = useMedia(MEDIA_QUERY_TABLET)
   const [closeIcon, setCloseIcon] = useState(false)
+  const [activeRound, setActiveRound] = useState(currentNumberQuestion)
+
   const openText = 'Open list of money levels'
   const closeText = 'Close list of money levels'
+
   const iconClick = () => {
     setCloseIcon(!closeIcon)
     handleBtnClick()
@@ -26,25 +31,34 @@ const Header: React.FC<Props> = ({ handleBtnClick }) => {
     [`${defaultHeaderClassName}--close`]: closeIcon,
   })
 
-  const DesktopMenu = () => {
+  useEffect(() => {
+    setActiveRound(currentNumberQuestion)
+  }, [currentNumberQuestion])
+
+  const DesktopMenu = (array: Array<any>) => {
     return (
       <nav className={`${defaultHeaderClassName}__nav`}>
         <ul className={`${defaultHeaderClassName}__list`}>
-          <li className={`${defaultHeaderClassName}__item`}>
-            <MoneyCell>1111</MoneyCell>
-          </li>
-          <li className={`${defaultHeaderClassName}__item`}>
-            <MoneyCell>22222</MoneyCell>
-          </li>
-          <li className={`${defaultHeaderClassName}__item`}>
-            <MoneyCell>3333</MoneyCell>
-          </li>
+          {array
+            .map((item, index) => {
+              return (
+                <li key={item} className={`${defaultHeaderClassName}__item`}>
+                  <MoneyCell
+                    active={activeRound === index}
+                    disabled={activeRound > index}
+                  >
+                    {item}
+                  </MoneyCell>
+                </li>
+              )
+            })
+            .reverse()}
         </ul>
       </nav>
     )
   }
 
-  const MobileMenu = () => {
+  const MobileMenu = (array: Array<any>) => {
     return (
       <>
         <button
@@ -57,15 +71,13 @@ const Header: React.FC<Props> = ({ handleBtnClick }) => {
         {closeIcon && (
           <nav className={`${defaultHeaderClassName}__nav`}>
             <ul className={`${defaultHeaderClassName}__list`}>
-              <li className={`${defaultHeaderClassName}__item`}>
-                <MoneyCell size="s">1111</MoneyCell>
-              </li>
-              <li className={`${defaultHeaderClassName}__item`}>
-                <MoneyCell size="s">22222</MoneyCell>
-              </li>
-              <li className={`${defaultHeaderClassName}__item`}>
-                <MoneyCell size="s">3333</MoneyCell>
-              </li>
+              {array.map(item => {
+                return (
+                  <li key={item} className={`${defaultHeaderClassName}__item`}>
+                    <MoneyCell size="s">{item}</MoneyCell>
+                  </li>
+                )
+              })}
             </ul>
           </nav>
         )}
@@ -75,7 +87,7 @@ const Header: React.FC<Props> = ({ handleBtnClick }) => {
 
   return (
     <header className={`${headerClassNames}`}>
-      {isWide ? DesktopMenu() : MobileMenu()}
+      {isWide ? DesktopMenu(moneyArray) : MobileMenu(moneyArray)}
     </header>
   )
 }

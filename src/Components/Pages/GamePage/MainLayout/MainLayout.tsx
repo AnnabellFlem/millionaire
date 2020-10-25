@@ -1,26 +1,41 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './MainLayout.css'
 import AnswerCell from '../../../BaseComponents/AnswerCell'
 import Button from '../../../BaseComponents/Button'
-import {
-  MOCK__QUESTIONS as questions,
-  MOCK__MONEY as money,
-} from '../../../../Services/mockQuestions'
+import { questionArray, moneyArray } from '../../../../Services/mockData'
 import useMedia from 'use-media'
 import { MEDIA_QUERY_MOBILE } from '../../../../Constants/MediaQueries'
 
 type Type = undefined | boolean
 
-const MainLayout: React.FC<any> = ({ handleEndGame }) => {
+type MainLayoutType = {
+  handleCurrentQuestion: (question: number) => void
+  currentNumberQuestion: number
+  handleEndGame: (b: boolean) => void
+}
+
+const MainLayout: React.FC<MainLayoutType> = ({
+  handleCurrentQuestion,
+  currentNumberQuestion,
+  handleEndGame,
+}) => {
   const isWide = useMedia(MEDIA_QUERY_MOBILE)
-  const lastRound = money.length
-  const [currentNumberQuestion, setCurrentNumberQuestion] = useState(0)
+  const lastRound = moneyArray.length
   const [answersArray, setAnswersArray] = useState<Array<any>>([])
   const [resultArray, setResultArray] = useState<Array<any>>([])
 
-  const currentQuestion = questions[currentNumberQuestion]
+  const currentQuestion = questionArray[currentNumberQuestion]
 
   const defaultMainLayoutClassName = 'MainLayout'
+
+  const arrayEquals = (a: Array<any>, b: Array<any>) => {
+    return (
+      Array.isArray(a) &&
+      Array.isArray(b) &&
+      a.length === b.length &&
+      a.every((val, index) => val === b[index])
+    )
+  }
 
   const handleChange = (e: any) => {
     const currID = e.currentTarget.id
@@ -45,15 +60,19 @@ const MainLayout: React.FC<any> = ({ handleEndGame }) => {
     setResultArray([...rightAns, ...userAns.filter(item => !item.right)])
 
     setTimeout(() => {
-      if (rightAns.length === userAns.filter(item => item.right).length) {
+      if (arrayEquals(rightAns, userAns)) {
         setAnswersArray([])
         setResultArray([])
         currentNumberQuestion === lastRound - 1
-          ? handleEndGame()
-          : setCurrentNumberQuestion(currentNumberQuestion + 1)
-      } else return handleEndGame()
+          ? handleEndGame(true)
+          : handleCurrentQuestion(currentNumberQuestion + 1)
+      } else return handleEndGame(false)
     }, 2000)
   }
+
+  useEffect(() => {
+    handleCurrentQuestion(currentNumberQuestion)
+  }, [currentNumberQuestion, handleCurrentQuestion])
 
   const RenderList = (array: Array<any>, resArr: Array<any>) => {
     console.log(answersArray)

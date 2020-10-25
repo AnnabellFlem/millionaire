@@ -1,34 +1,21 @@
-export interface ChuckNorrisApiJokeType {
+export type AnswersType = {
   id: string
-  icon_url: string
-  url: string
-  value: string
-  created_at: string
-  categories: string
-  updated_at: string
+  answer: string
+  variant: string
+  right: boolean
 }
 
-export interface JokeType {
-  id: string
-  url: string
-  text: string
-  categories: string
-  updatedAt: string
-  isFavourite: boolean
-  isDataFromServer: boolean
+export type QuestionType = {
+  id: number
+  question: string
+  answers: Array<AnswersType>
 }
 
-export type JokesListType = Array<JokeType>
+export type QuestionListType = Array<QuestionType>
 
-export type FavListType = Array<string>
+export type MoneyListType = Array<string>
 
-export enum RadioTypes {
-  Random = 'random',
-  Categories = 'categories',
-  Search = 'search'
-}
-
-export type RadioMode = {
-  type: RadioTypes
-  value?: string
+export type ConfigType = {
+  questions: Array<QuestionType>
+  money: MoneyListType
 }
