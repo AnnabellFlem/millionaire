@@ -2,11 +2,9 @@ import configGame from './configGame.json'
 import mockConfigGame from './mockConfigGame.json'
 import { ConfigType, MoneyListType, QuestionListType } from '../Types'
 
-console.log(111)
-const configGameObj: ConfigType = JSON.parse(configGame as any)
-console.log(222)
+const configGameObj: ConfigType = configGame
 
-const mockConfigGameObj: ConfigType = JSON.parse(mockConfigGame as any)
+const mockConfigGameObj: ConfigType = mockConfigGame
 
 const isValidData = (
   moneyArr: MoneyListType,
