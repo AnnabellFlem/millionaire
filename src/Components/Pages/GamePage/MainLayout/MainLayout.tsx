@@ -6,6 +6,7 @@ import { questionArray, moneyArray } from '../../../../Services/mockData'
 import useMedia from 'use-media'
 import { MEDIA_QUERY_MOBILE } from '../../../../Constants/MediaQueries'
 import { AnswersType } from '../../../../Types'
+import classNames from 'classnames'
 
 type AnswersArrayType = Array<AnswersType>
 
@@ -29,6 +30,9 @@ const MainLayout: React.FC<MainLayoutType> = ({
   const currentQuestion = questionArray[currentNumberQuestion]
 
   const defaultMainLayoutClassName = 'MainLayout'
+  const mainLayoutClassNames = classNames(defaultMainLayoutClassName, {
+    [`${defaultMainLayoutClassName}--loading`]: rightAnswer !== null,
+  })
 
   const arrayEquals = (arrayOne: Array<any>, arrayTwo: Array<any>) => {
     return (
@@ -132,7 +136,7 @@ const MainLayout: React.FC<MainLayoutType> = ({
 
   return (
     <main>
-      <section className={defaultMainLayoutClassName}>
+      <section className={mainLayoutClassNames}>
         <form className={`${defaultMainLayoutClassName}__answers-form`}>
           <div
             role="group"

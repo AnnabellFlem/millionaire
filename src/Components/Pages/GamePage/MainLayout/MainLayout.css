@@ -55,6 +55,11 @@
   width: max-content;
 }
 
+.MainLayout--loading {
+  pointer-events: none;
+  user-select: none;
+}
+
 @media (max-width: 1400px) {
   .MainLayout__answers-item {
     width: auto;
