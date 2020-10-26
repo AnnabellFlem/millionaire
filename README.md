@@ -1,5 +1,5 @@
 # About project
-This project is a game that is an adaptation of the popular show [Who wants to be a millionaire](https://wwbm.com/).
+This project is a game that is an adaptation of the popular show [Who wants to be a millionaire](https://wwbm.com/).💰
 
 Written using **React** and **TypeScript**.
 
