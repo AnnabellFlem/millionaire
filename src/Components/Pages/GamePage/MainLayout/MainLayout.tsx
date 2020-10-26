@@ -5,13 +5,14 @@ import Button from '../../../BaseComponents/Button'
 import { questionArray, moneyArray } from '../../../../Services/mockData'
 import useMedia from 'use-media'
 import { MEDIA_QUERY_MOBILE } from '../../../../Constants/MediaQueries'
+import { AnswersType } from '../../../../Types'
 
-type Type = undefined | boolean
+type AnswersArrayType = Array<AnswersType>
 
 type MainLayoutType = {
   handleCurrentQuestion: (question: number) => void
   currentNumberQuestion: number
-  handleEndGame: (b: boolean) => void
+  handleEndGame: (isEndGame: boolean) => void
 }
 
 const MainLayout: React.FC<MainLayoutType> = ({
@@ -21,30 +22,30 @@ const MainLayout: React.FC<MainLayoutType> = ({
 }) => {
   const isWide = useMedia(MEDIA_QUERY_MOBILE)
   const lastRound = moneyArray.length
-  const [answersArray, setAnswersArray] = useState<Array<any>>([])
-  const [resultArray, setResultArray] = useState<Array<any>>([])
+  const [answersArray, setAnswersArray] = useState<Array<string>>([])
+  const [resultArray, setResultArray] = useState<AnswersArrayType>([])
 
   const currentQuestion = questionArray[currentNumberQuestion]
 
   const defaultMainLayoutClassName = 'MainLayout'
 
-  const arrayEquals = (a: Array<any>, b: Array<any>) => {
+  const arrayEquals = (arrayOne: Array<any>, arrayTwo: Array<any>) => {
     return (
-      Array.isArray(a) &&
-      Array.isArray(b) &&
-      a.length === b.length &&
-      a.every((val, index) => val === b[index])
+      Array.isArray(arrayOne) &&
+      Array.isArray(arrayTwo) &&
+      arrayOne.length === arrayTwo.length &&
+      arrayOne.every((val, index) => val === arrayTwo[index])
     )
   }
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const currID = e.currentTarget.id
     const index = answersArray.indexOf(currID)
     if (index > -1) {
       answersArray.splice(index, 1)
       return setAnswersArray(answersArray)
     }
-    return setAnswersArray([...answersArray, ...currID])
+    return setAnswersArray([...answersArray, currID])
   }
 
   const handleCheck = () => {
@@ -74,8 +75,7 @@ const MainLayout: React.FC<MainLayoutType> = ({
     handleCurrentQuestion(currentNumberQuestion)
   }, [currentNumberQuestion, handleCurrentQuestion])
 
-  const RenderList = (array: Array<any>, resArr: Array<any>) => {
-    console.log(answersArray)
+  const RenderList = (array: AnswersArrayType, resArr: AnswersArrayType) => {
     return (
       <>
         {array.map(item => {

@@ -9,24 +9,25 @@ const MainPage: React.FC = () => {
   const [win, setWin] = useState(false)
   const [currentNumberQuestion, setCurrentNumberQuestion] = useState(0)
 
-  const handleClick = (e: any) => {
-    if (e.currentTarget.value === 'start') {
-      // setCurrentNumberQuestion(0)
+  const handleClick = (
+    e: React.MouseEvent<HTMLButtonElement | HTMLElement, MouseEvent>,
+  ) => {
+    const target = e.currentTarget as HTMLButtonElement
+    if (target.value === 'start') {
       setStartGame(false)
-    } else if (e.currentTarget.value === 'retry') {
+    } else if (target.value === 'retry') {
       setCurrentNumberQuestion(0)
-      setStartGame(true)
       setEndGame(false)
     } else return null
   }
 
-  const handleEndGame = (b: boolean) => {
+  const handleEndGame = (isEndGame: boolean) => {
     setEndGame(true)
-    setWin(b)
+    setWin(isEndGame)
   }
 
-  const handleQuestion = (q: number) => {
-    setCurrentNumberQuestion(q)
+  const handleQuestion = (question: number) => {
+    setCurrentNumberQuestion(question)
   }
 
   return (

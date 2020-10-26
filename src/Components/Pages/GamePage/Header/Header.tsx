@@ -7,6 +7,7 @@ import classNames from 'classnames'
 import useMedia from 'use-media'
 import { MEDIA_QUERY_TABLET } from '../../../../Constants/MediaQueries'
 import { moneyArray } from '../../../../Services/mockData'
+import { MoneyListType } from '../../../../Types'
 
 type Props = {
   handleBtnClick: () => void
@@ -35,7 +36,7 @@ const Header: React.FC<Props> = ({ handleBtnClick, currentNumberQuestion }) => {
     setActiveRound(currentNumberQuestion)
   }, [currentNumberQuestion])
 
-  const DesktopMenu = (array: Array<any>) => {
+  const DesktopMenu = (array: MoneyListType) => {
     return (
       <nav className={`${defaultHeaderClassName}__nav`}>
         <ul className={`${defaultHeaderClassName}__list`}>
@@ -58,7 +59,7 @@ const Header: React.FC<Props> = ({ handleBtnClick, currentNumberQuestion }) => {
     )
   }
 
-  const MobileMenu = (array: Array<any>) => {
+  const MobileMenu = (array: MoneyListType) => {
     return (
       <>
         <button

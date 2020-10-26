@@ -4,7 +4,7 @@ import Header from './Header'
 import Footer from './Footer'
 
 type GamePage = {
-  handleEndGame: (b: boolean) => void
+  handleEndGame: (isEndGame: boolean) => void
   handleQuestion: (question: number) => void
   currentNumberQuestion: number
 }
