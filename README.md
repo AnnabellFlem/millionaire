@@ -31,7 +31,7 @@ In the project directory, you can run:
 ### `npm i`
 This command helps to install all the necessary dependencies from the `package.json` before starting another actions with the project
 
-### `npm start`
+### `npm run start`
 
 Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
@@ -39,7 +39,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
 
-### `npm test`
+### `npm run test`
 
 Launches the test runner in the interactive watch mode.<br />
 See the section about [jest](https://jestjs.io/docs/en/getting-started) for more information.
@@ -54,16 +54,16 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm eject`
+### `npm run eject`
 
 If you aren’t satisfied with the build tool and configuration choices, you can eject at any time. This command will remove the single build dependency from your project.
 
-### `npm deploy`
+### `npm run deploy`
 
 The `predeploy` script will run automatically before `deploy` is run.
 This command allows you to deploy the project via **GitHub Pages** from the url with key `"homepage"` in `package.json`.
 
-### `npm eslint`
+### `npm run eslint`
 
 The `eslint` script will run [ESLint](https://eslint.org/docs/user-guide/getting-started) on `src/` directory.
 
