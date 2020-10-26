@@ -1,10 +1,7 @@
 # About project
-This project was created for educational purposes.
+This project is a game that is an adaptation of the popular show [Who wants to be a millionaire](https://wwbm.com/).
 
 Written using **React** and **TypeScript**.
-
-
-This project is a game that is an adaptation of the popular show **'Who wants to be a millionaire'**
 
 Application has the following rules:
 - The player takes turns answering one of 12 questions.

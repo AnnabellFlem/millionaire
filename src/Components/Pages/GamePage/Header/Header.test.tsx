@@ -8,7 +8,9 @@ describe('<Header /> test', () => {
   let wrapper: any
 
   beforeAll(() => {
-    wrapper = mount(<Header handleBtnClick={MOCK_HANDLE_FUNC} />)
+    wrapper = mount(
+      <Header handleBtnClick={MOCK_HANDLE_FUNC} currentNumberQuestion={0} />,
+    )
   })
 
   it('should to match snapshot', () => {

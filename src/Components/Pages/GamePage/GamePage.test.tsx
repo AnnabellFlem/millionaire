@@ -2,11 +2,20 @@ import React from 'react'
 import { mount } from 'enzyme'
 import GamePage from './GamePage'
 
-describe('<MainPage /> test', () => {
+const MOCK_HANDLE_END_GAME = jest.fn()
+const MOCK_HANDLE_QUESTION = jest.fn()
+
+describe('<GamePage /> test', () => {
   let wrapper: any
 
   beforeAll(() => {
-    wrapper = mount(<GamePage />)
+    wrapper = mount(
+      <GamePage
+        currentNumberQuestion={0}
+        handleEndGame={MOCK_HANDLE_END_GAME}
+        handleQuestion={MOCK_HANDLE_QUESTION}
+      />,
+    )
   })
 
   it('should to match snapshot', () => {
