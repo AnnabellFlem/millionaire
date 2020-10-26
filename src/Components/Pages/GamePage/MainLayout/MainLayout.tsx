@@ -79,6 +79,7 @@ const MainLayout: React.FC<MainLayoutType> = ({
       }, 2000)
       return () => clearTimeout(timeout)
     }
+    // eslint-disable-next-line
   }, [rightAnswer])
 
   useEffect(() => {
