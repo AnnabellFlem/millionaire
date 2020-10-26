@@ -20,7 +20,6 @@ const getMoney = () => {
 }
 
 const getQuestions = () => {
-  console.log(configGameObj)
   return isValidData(configGameObj.money, configGameObj.questions)
     ? configGameObj.questions
     : mockConfigGameObj.questions

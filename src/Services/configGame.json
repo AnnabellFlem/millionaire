@@ -2,17 +2,17 @@
   "questions": [
     {
       "id": 1,
-      "question": "question 1",
+      "question": "In the UK, the abbreviation NHS stands for National what Service?",
       "answers": [
         {
           "id": "1",
-          "answer": "answer 11",
+          "answer": "Humanity",
           "variant": "A",
           "right": true
         },
         {
           "id": "2",
-          "answer": "answer 12",
+          "answer": "Health",
           "variant": "B",
           "right": false
         },
