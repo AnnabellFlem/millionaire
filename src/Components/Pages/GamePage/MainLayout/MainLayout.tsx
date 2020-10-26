@@ -24,6 +24,7 @@ const MainLayout: React.FC<MainLayoutType> = ({
   const lastRound = moneyArray.length
   const [answersArray, setAnswersArray] = useState<Array<string>>([])
   const [resultArray, setResultArray] = useState<AnswersArrayType>([])
+  const [rightAnswer, setRightAnswer] = useState<boolean | null>()
 
   const currentQuestion = questionArray[currentNumberQuestion]
 
@@ -60,19 +61,29 @@ const MainLayout: React.FC<MainLayoutType> = ({
 
     setResultArray([...rightAns, ...userAns.filter(item => !item.right)])
 
-    setTimeout(() => {
-      if (arrayEquals(rightAns, userAns)) {
-        setAnswersArray([])
-        setResultArray([])
-        currentNumberQuestion === lastRound - 1
-          ? handleEndGame(true)
-          : handleCurrentQuestion(currentNumberQuestion + 1)
-      } else return handleEndGame(false)
-    }, 2000)
+    if (arrayEquals(rightAns, userAns)) {
+      setRightAnswer(true)
+    } else return setRightAnswer(false)
   }
 
   useEffect(() => {
+    if (rightAnswer !== null) {
+      const timeout = setTimeout(() => {
+        if (rightAnswer) {
+          setAnswersArray([])
+          setResultArray([])
+          currentNumberQuestion === lastRound - 1
+            ? handleEndGame(true)
+            : handleCurrentQuestion(currentNumberQuestion + 1)
+        } else handleEndGame(false)
+      }, 2000)
+      return () => clearTimeout(timeout)
+    }
+  }, [rightAnswer])
+
+  useEffect(() => {
     handleCurrentQuestion(currentNumberQuestion)
+    setRightAnswer(null)
   }, [currentNumberQuestion, handleCurrentQuestion])
 
   const RenderList = (array: AnswersArrayType, resArr: AnswersArrayType) => {
