@@ -72,13 +72,24 @@ const Header: React.FC<Props> = ({ handleBtnClick, currentNumberQuestion }) => {
         {closeIcon && (
           <nav className={`${defaultHeaderClassName}__nav`}>
             <ul className={`${defaultHeaderClassName}__list`}>
-              {array.map(item => {
-                return (
-                  <li key={item} className={`${defaultHeaderClassName}__item`}>
-                    <MoneyCell size="s">{item}</MoneyCell>
-                  </li>
-                )
-              })}
+              {array
+                .map((item, index) => {
+                  return (
+                    <li
+                      key={item}
+                      className={`${defaultHeaderClassName}__item`}
+                    >
+                      <MoneyCell
+                        active={activeRound === index}
+                        disabled={activeRound > index}
+                        size={'s'}
+                      >
+                        {item}
+                      </MoneyCell>
+                    </li>
+                  )
+                })
+                .reverse()}
             </ul>
           </nav>
         )}
